@@ -1,11 +1,11 @@
-import React, { Component }        from 'react';
-import ReactDOM                    from 'react-dom';
-import { BrowserRouter, Route }    from 'react-router-dom';
-import store                       from './store/store';
-import { Login }                   from './containers/Containers';
-import names                       from './styles/names';
-import { unit, commonStyles }      from './styles/styles';
-import styled, {createGlobalStyle} from 'styled-components';
+import React, { Component }               from 'react';
+import ReactDOM                           from 'react-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import store                              from './store/store';
+import { Login, Game }                    from './containers/Containers';
+import names                              from './styles/names';
+import { unit, commonStyles }             from './styles/styles';
+import styled, {createGlobalStyle}        from 'styled-components';
 import { opacify } from 'polished';
 
 const GlobalStyle = createGlobalStyle`
@@ -124,11 +124,17 @@ const AppStyled = styled.main`
 `;
 
 class App extends Component{
+  async componentWillMount() {
+    if (localStorage.token === '' && window.location !== '/login') {
+
+    }
+  }  
   render() {
     return (
       <BrowserRouter basename="/">
         <AppStyled>
           <Route path={'/' + names.login.href} component={Login.Login}/>
+          <Route path={'/' + names.gameView.href} component={Game.Game}/>
           <GlobalStyle/>
         </AppStyled>
       </BrowserRouter>

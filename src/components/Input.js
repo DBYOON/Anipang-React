@@ -1,6 +1,6 @@
-import React, { Component }    from 'react';
-import styled from 'styled-components';
-import { withFormsy } from 'formsy-react';
+import React, { Component } from 'react';
+import styled               from 'styled-components';
+import { withFormsy }       from 'formsy-react';
 
 const FormInputStyled = styled.div`
   input {
@@ -15,13 +15,13 @@ const FormInputStyled = styled.div`
   
   span {
     font-size: .9em;
+    color: red;
   }
 `;
 
 class _FormInput extends Component {
   constructor(props) {
     super(props);
-    //this.sto;
     this.changeValue = this.changeValue.bind(this);
   }
 

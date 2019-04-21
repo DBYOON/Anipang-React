@@ -4,6 +4,8 @@ import { unit, commonStyles } from '../styles/styles';
 import styled                 from 'styled-components';
 import { opacify }            from 'polished';
 import Formsy                 from 'formsy-react';
+import names                  from '../styles/names';
+import store                  from '../store/store';
 
 const FormStyled = styled.div`
   height: 100vh;
@@ -69,6 +71,15 @@ const FormStyled = styled.div`
         text-align: left;
         pointer-events: none;
         transition: top .4s, color 1s;
+
+        &.errorMsg {
+          top: 100%;
+          right: 0;
+          bottom: auto;
+          left: auto;
+          margin-top: ${unit(2)};
+          color: red;
+        }        
       }
       
       input {
@@ -112,13 +123,13 @@ const FormStyled = styled.div`
     }
 
     span {
-      &:nth-child(6) {
+      &:nth-child(5) {
         display: inline;
         position: absolute;
         font-size: ${unit(12)};
-        color: #000;
+        color: red;
         top: 390px;
-        left: 75px;
+        left: 37px;
       }
     }
   }  
@@ -141,7 +152,10 @@ export class Login extends Component {
   }
 
   componentWillMount() {
+    if (localStorage.token !== '') {
+      window.location = '/' + names.gameView.href;
 
+    }
   }
 
   componentDidMount() {
@@ -195,10 +209,27 @@ export class Login extends Component {
     this.setState({
       formClass: 'inValid',
     });
+    console.log('noSubmit');
   }
 
-  async submit(model) {
+  submit(model) {
+    let response = {
+      'username': model.username,
+      'password': model.password,
+    };
 
+    if (response.username === 'admin' && response.password === 'admin123') {
+      localStorage.token = 'testToken';
+      store.dispatch({
+        type: 'setToken',
+        token: localStorage.token,
+      });
+    }
+
+    if (localStorage.token !== '') {
+      localStorage.token = '';
+      window.location = '/' + names.gameView.href;
+    }
   }
 
   render() {
@@ -221,6 +252,11 @@ export class Login extends Component {
                 name="username"
                 onFocus={this.onFocus}
                 onBlur={this.onBlur}
+                validations={{
+                  maxLength: 64,
+                  minLength: 3,
+                }}
+                validationErrors={names.validationErrors}                
               />
             </label>
             <label className={this.state.pwClass}>
@@ -231,12 +267,18 @@ export class Login extends Component {
                 type="password"
                 onFocus={this.onFocus}
                 onBlur={this.onBlur}
+                validations={{
+                  maxLength: 48,
+                  minLength: 6,
+                }}
+                validationErrors={names.validationErrors}                
               />
             </label>
             <button type="submit" className="submitBtn">로그인</button>
+            <span>테스트 아이디: admin / 테스트 비밀번호: admin123</span>
           </div>
         </FormStyled>
-        </Formsy>
+      </Formsy>
     );
   }
 }
