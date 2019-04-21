@@ -1,7 +1,5 @@
 # Anipang-React
 
-## 실행방법
-
 ##### 1. node 설치
 [nvm](https://github.com/creationix/nvm)또는
 [nodejs](https://nodejs.org/ko/) 
