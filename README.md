@@ -20,7 +20,7 @@ node 버전 : v10.14.2
 ```
 
 ##### 4. Demo
-Link : [애니팡](luckyd.be/#/login)
+Link : [애니팡](http://luckyd.be:3000/#/game)
 
 ## AUTHOR
 
