@@ -1,4 +1,5 @@
 # Anipang-React
+개발진행중
 
 ##### 1. node 설치
 [nvm](https://github.com/creationix/nvm)또는
