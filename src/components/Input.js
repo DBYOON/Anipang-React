@@ -47,6 +47,7 @@ class _FormInput extends Component {
           onBlur={this.props.onBlur}
           type={this.props.type || 'text'}
           value={this.props.getValue() || ''}
+          autoComplete='off'
         />
         <span className="errorMsg">{errorMessage}</span>
       </FormInputStyled>

@@ -11,8 +11,8 @@ const commonStyles = {
   fontColor: '#f18448',
   minWidth: unit(900),
   maxWidth: '100%',
-  fontFamily: '"Noto Sans"',
-  activeColor: '#396ab2',
+  fontFamily: '"Hanna"',
+  activeColor: '#000',
 };
 
 export {

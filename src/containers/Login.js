@@ -152,9 +152,8 @@ export class Login extends Component {
   }
 
   componentWillMount() {
-    if (localStorage.token !== '') {
-      window.location = '/' + names.gameView.href;
-
+    if (localStorage.token !== '' && localStorage.token !== undefined) {
+      window.location = '/#/' + names.gameView.href;
     }
   }
 
@@ -217,7 +216,6 @@ export class Login extends Component {
       'username': model.username,
       'password': model.password,
     };
-
     if (response.username === 'admin' && response.password === 'admin123') {
       localStorage.token = 'testToken';
       store.dispatch({
@@ -226,9 +224,9 @@ export class Login extends Component {
       });
     }
 
-    if (localStorage.token !== '') {
-      localStorage.token = '';
-      window.location = '/' + names.gameView.href;
+    if (localStorage.token !== '' && localStorage.token !== undefined) {
+      //localStorage.token = '';
+      window.location = '/#/' + names.gameView.href;
     }
   }
 
